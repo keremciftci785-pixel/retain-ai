@@ -138,6 +138,7 @@
       display: flex;
       gap: 8px;
       margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
     .tab-btn {
@@ -323,24 +324,57 @@
       background: var(--accent-brown-hover);
     }
 
-    /* Live Chat Simülatörü */
-    .chat-container {
+    /* Canlı Chat Simülatörü Grid Yapısı */
+    .chat-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+    }
+
+    .chat-sidebar {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 700px;
-      margin: 0 auto;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .scenario-btn {
+      width: 100%;
+      text-align: left;
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+
+    .scenario-btn:hover {
+      border-color: var(--accent-brown);
+      color: var(--text-primary);
+    }
+
+    .chat-main {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 500px;
     }
 
     .chat-box {
+      flex: 1;
       background: #FFF;
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      height: 300px;
+      border-radius: 10px;
       padding: 16px;
       overflow-y: auto;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -376,34 +410,49 @@
       border: 1px solid var(--border-color);
       border-radius: 8px;
       outline: none;
+      background: #FFF;
     }
 
-    /* Pricing Section */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .pricing-card {
+    /* Tekil & Sabit Fiyatlandırma Sayfası ($1,000) */
+    .pricing-hero {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 24px;
+      padding: 40px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .price-tag {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent-brown);
+      margin: 20px 0;
+    }
+
+    .feature-list {
+      text-align: left;
+      margin: 24px auto;
+      max-width: 400px;
+      font-size: 14px;
+      color: var(--text-secondary);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 10px;
     }
 
-    .pricing-card.featured {
-      border-color: var(--accent-brown);
-      box-shadow: 0 4px 16px rgba(92,67,51,0.1);
+    .feature-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .price {
-      font-size: 28px;
+    .feature-list li::before {
+      content: "✓";
+      color: var(--status-green-text);
       font-weight: 700;
-      margin: 16px 0;
     }
 
     /* Modal */
@@ -476,7 +525,7 @@
       <div class="brand">
         <div class="logo-icon">R</div>
         <div class="brand-text">
-          <h1>RetainAI <span class="badge">SAAS HUB</span></h1>
+          <h1>RetainAI <span class="badge">ENTERPRISE</span></h1>
           <p>WhatsApp & Instagram AI Satış Tutundurma Platformu</p>
         </div>
       </div>
@@ -492,11 +541,12 @@
     <!-- Navigation Tabs -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab(0)">🔌 Kanal Entegrasyonları</button>
-      <button class="tab-btn" onclick="switchTab(1)">💬 Canlı Test Simülatörü</button>
-      <button class="tab-btn" onclick="switchTab(2)">💳 Fiyatlandırma</button>
+      <button class="tab-btn" onclick="switchTab(1)">🧠 İkna Motoru & Sheet B2</button>
+      <button class="tab-btn" onclick="switchTab(2)">💬 Canlı Kanal Testi</button>
+      <button class="tab-btn" onclick="switchTab(3)">💳 Fiyatlandırma ($1,000)</button>
     </div>
 
-    <!-- TAB 1: Entegrasyonlar -->
+    <!-- TAB 0: Kanal Entegrasyonları -->
     <div class="section-content active" id="tab-0">
       <div class="banner">
         <div>
@@ -510,7 +560,6 @@
       </div>
 
       <div class="grid">
-        <!-- WhatsApp -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -524,7 +573,6 @@
           <button class="btn-action">Ayarları Yönet</button>
         </div>
 
-        <!-- Instagram -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -538,7 +586,6 @@
           <button class="btn-action">Meta Hesabını Güncelle</button>
         </div>
 
-        <!-- Shopify -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -554,40 +601,60 @@
       </div>
     </div>
 
-    <!-- TAB 2: Canlı Test Simülatörü -->
+    <!-- TAB 1: İkna Motoru & Sheet B2 -->
     <div class="section-content" id="tab-1">
-      <div class="chat-container">
-        <div style="font-weight:700; margin-bottom:12px;">Yapay Zeka İkna Motoru Test Paneli</div>
-        <div class="chat-box" id="chatBox">
-          <div class="chat-message ai">Merhaba! Ben RetainAI İkna Asistanıyım. Müşterinin iade talebine nasıl yanıt vermemi istersiniz? Test edin!</div>
+      <div class="banner">
+        <div>
+          <div class="banner-title">Google Sheets B2 Sistem Yönergeleri</div>
+          <div class="banner-desc">Yapay zekanın müşterilerle nasıl konuşacağını, hangi indirimleri önereceğini doğrudan Google Tablonuzdan yönetin.</div>
         </div>
-        <div class="chat-input-area">
-          <input type="text" id="userInput" placeholder="Örn: Ürün büyük geldi iade etmek istiyorum..." onkeypress="if(event.key === 'Enter') sendTestMessage()">
-          <button class="btn-action-primary" style="width: auto; padding: 0 20px;" onclick="sendTestMessage()">Gönder</button>
+      </div>
+      <div class="card" style="max-width: 700px;">
+        <div class="card-title">Aktif Prompt Konfigürasyonu</div>
+        <div class="card-desc">"Sen profesyonel bir e-ticaret iade önleme asistanısın. Müşteri iade etmek istediğinde asla zorluk çıkarma; önce özür dile, ardından %15 indirim kuponu veya ücretsiz değişim önererek satışı tutundurmaya çalış."</div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Canlı Kanal Testi -->
+    <div class="section-content" id="tab-2">
+      <div class="chat-layout">
+        <div class="chat-sidebar">
+          <div style="font-weight:700; font-size:14px; margin-bottom:12px;">Örnek Senaryolar</div>
+          <button class="scenario-btn" onclick="setQuery('Ürünü beğenmedim iade etmek istiyorum')">"Ürünü beğenmedim iade etmek istiyorum"</button>
+          <button class="scenario-btn" onclick="setQuery('Beden olmadı çok dar geldi')">"Beden olmadı çok dar geldi"</button>
+          <button class="scenario-btn" onclick="setQuery('Kargo nerede kaldı iptal edeceğim')">"Kargo nerede kaldı iptal edeceğim"</button>
+        </div>
+        <div class="chat-main">
+          <div style="font-weight:700; margin-bottom:8px; font-size:14px;">WhatsApp & Instagram Canlı Simülatör</div>
+          <div class="chat-box" id="chatBox">
+            <div class="chat-message ai">Merhaba! Ben RetainAI yapay zeka ikna motoruyum. Sol taraftaki senaryolardan birine tıklayarak veya aşağıdan mesaj yazarak test edebilirsiniz.</div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Mesajınızı yazın..." onkeypress="if(event.key === 'Enter') sendTestMessage()">
+            <button class="btn-action-primary" style="width: auto; padding: 0 20px;" onclick="sendTestMessage()">Gönder</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: Fiyatlandırma -->
-    <div class="section-content" id="tab-2">
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div>
-            <h3>Başlangıç</h3>
-            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Küçük e-ticaret siteleri için.</p>
-            <div class="price">1.499 ₺ <span style="font-size:14px; font-weight:400;">/ ay</span></div>
-          </div>
-          <button class="btn-action" onclick="toggleModal()">Hemen Başla</button>
-        </div>
-        <div class="pricing-card featured">
-          <div>
-            <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">EN ÇOK TERCİH EDİLEN</span>
-            <h3 style="margin-top:8px;">Profesyonel</h3>
-            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Büyüyen markalar için tam otomasyon.</p>
-            <div class="price">3.499 ₺ <span style="font-size:14px; font-weight:400;">/ ay</span></div>
-          </div>
-          <button class="btn-action-primary" onclick="toggleModal()">Pro'ya Geç</button>
-        </div>
+    <!-- TAB 3: Fiyatlandırma ($1,000 / Sabit Ürün) -->
+    <div class="section-content" id="tab-3">
+      <div class="pricing-hero">
+        <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">KURUMSAL LİSANS - SINIRSIZ KULLANIM</span>
+        <h2 style="margin-top:12px; font-size:24px;">RetainAI Enterprise</h2>
+        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Tüm kanallar, Groq API entegrasyonu ve sınırsız iade önleme motoru tek pakette.</p>
+        
+        <div class="price-tag">$1,000 <span style="font-size:16px; font-weight:400; color:var(--text-secondary);">/ ay</span></div>
+
+        <ul class="feature-list">
+          <li>Sınırsız WhatsApp & Instagram Mesaj Yanıtlama</li>
+          <li>Google Sheets B2 Canlı Prompt Yönetimi</li>
+          <li>Groq API (gpt-oss-20b) En Hızlı Yanıt Motoru</li>
+          <li>Shopify & WooCommerce Tam Senkronizasyon</li>
+          <li>Öncelikli 7/24 Teknik Destek</li>
+        </ul>
+
+        <button class="btn-action-primary" style="margin-top:16px; padding: 14px;" onclick="toggleModal()">Hemen Abone Ol</button>
       </div>
     </div>
 
@@ -598,7 +665,8 @@
     <div class="modal-box">
       <button class="modal-close" onclick="toggleModal()">✕</button>
       <div style="font-size:20px; font-weight:700; text-align:center; margin-bottom:6px;">RetainAI'ya Katılın</div>
-      <form onsubmit="event.preventDefault(); alert('İşlem başarılı!'); toggleModal();">
+      <div style="font-size:13px; color:var(--text-secondary); text-align:center; margin-bottom:16px;">Enterprise Lisans: $1,000 / ay</div>
+      <form onsubmit="event.preventDefault(); alert('Kayıt / Ödeme sayfasına yönlendiriliyorsunuz!'); toggleModal();">
         <div class="form-group">
           <label>E-Posta Adresi</label>
           <input type="email" placeholder="ornek@magaza.com" required>
@@ -607,7 +675,7 @@
           <label>Şifre</label>
           <input type="password" placeholder="••••••••" required>
         </div>
-        <button type="submit" class="btn-action-primary">Devam Et</button>
+        <button type="submit" class="btn-action-primary" style="margin-top:10px;">Devam Et</button>
       </form>
     </div>
   </div>
@@ -617,6 +685,15 @@
       document.getElementById('authModal').classList.toggle('active');
     }
 
+    (function switchTab(index) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.section-content').forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+      });
+    })(0);
+
     function switchTab(index) {
       document.querySelectorAll('.tab-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
@@ -624,6 +701,11 @@
       document.querySelectorAll('.section-content').forEach((sec, i) => {
         sec.classList.toggle('active', i === index);
       });
+    }
+
+    function setQuery(text) {
+      document.getElementById('userInput').value = text;
+      sendTestMessage();
     }
 
     function sendTestMessage() {
@@ -637,9 +719,9 @@
       chatBox.scrollTop = chatBox.scrollHeight;
 
       setTimeout(() => {
-        chatBox.innerHTML += `<div class="chat-message ai">Harika bir ürün seçtiniz! İade yerine size özel %20 indirim kuponu tanımlayalım ya da ücretsiz beden değişimi yapalım? (Groq API B2 İkna Yanıtı)</div>`;
+        chatBox.innerHTML += `<div class="chat-message ai">Harika bir tercih! İade yerine size özel %20 indirim kuponu tanımlayalım ya da ücretsiz değişim yapalım? (Groq API B2 İkna Yanıtı)</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
-      }, 1000);
+      }, 800);
     }
   </script>
 </body>
