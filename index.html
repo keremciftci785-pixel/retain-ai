@@ -17,6 +17,7 @@
       --accent-brown-hover: #4A3528;
       --status-green-bg: #E3F4EB;
       --status-green-text: #1B7A4B;
+      --status-badge-bg: #F0EDE6;
     }
 
     * {
@@ -173,9 +174,6 @@
       border-radius: 16px;
       padding: 24px;
       margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
     .banner-title {
@@ -187,12 +185,12 @@
     .banner-desc {
       font-size: 14px;
       color: var(--text-secondary);
-      max-width: 600px;
+      max-width: 700px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
@@ -226,6 +224,15 @@
     .tag-connected {
       background: var(--status-green-bg);
       color: var(--status-green-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .tag-soon {
+      background: var(--status-badge-bg);
+      color: var(--text-secondary);
       font-size: 12px;
       font-weight: 600;
       padding: 4px 10px;
@@ -269,6 +276,23 @@
 
     .btn-action-primary:hover {
       background: var(--accent-brown-hover);
+    }
+
+    .btn-action-secondary {
+      width: 100%;
+      background: transparent;
+      color: var(--accent-brown);
+      border: 1px solid var(--accent-brown);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-action-secondary:hover {
+      background: rgba(92, 67, 51, 0.05);
     }
 
     /* Live Chat Simulator */
@@ -492,21 +516,22 @@
 
     <!-- Navigation Tabs -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab(0)">🔌 Channel Integrations</button>
+      <button class="tab-btn active" onclick="switchTab(0)">🔌 Channel & Platform Integrations</button>
       <button class="tab-btn" onclick="switchTab(1)">💬 Live Test Simulator</button>
       <button class="tab-btn" onclick="switchTab(2)">💳 Pricing ($1,000)</button>
     </div>
 
-    <!-- TAB 0: Channel Integrations -->
+    <!-- TAB 0: Channel & Platform Integrations -->
     <div class="section-content active" id="tab-0">
       <div class="banner">
         <div>
-          <div class="banner-title">Connect Your Customer Communication Channels</div>
-          <div class="banner-desc">Turn return requests into automated sales effortlessly with WhatsApp Business and Instagram DM integrations.</div>
+          <div class="banner-title">Connect Your Communication Channels & E-Commerce Ecosystem</div>
+          <div class="banner-desc">Sync WhatsApp, Instagram, Shopify, WooCommerce, and global enterprise platforms to turn returns and support requests into revenue automatically.</div>
         </div>
       </div>
 
       <div class="grid">
+        <!-- WhatsApp -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -520,6 +545,7 @@
           <button class="btn-action-primary">Manage Settings</button>
         </div>
 
+        <!-- Instagram -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -531,6 +557,90 @@
             <div class="card-details">Handle: @brandstore.global</div>
           </div>
           <button class="btn-action-primary">Update Meta Account</button>
+        </div>
+
+        <!-- Shopify -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #E3F2FD; color: #1565C0;">🛍️</div>
+              <span class="tag-connected">● Connected</span>
+            </div>
+            <div class="card-title">Shopify Store Sync</div>
+            <div class="card-desc">Real-time order tracking, catalog sync, and automated coupon generation.</div>
+            <div class="card-details">Store: brandstore.myshopify.com</div>
+          </div>
+          <button class="btn-action-primary">Configure Store</button>
+        </div>
+
+        <!-- WooCommerce -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #EDE7F6; color: #512DA8;">📦</div>
+              <span class="tag-connected">● Connected</span>
+            </div>
+            <div class="card-title">WooCommerce Integration</div>
+            <div class="card-desc">Full webhook synchronization for customer orders and refund statuses.</div>
+            <div class="card-details">Endpoint: /wp-json/retain-ai/v1</div>
+          </div>
+          <button class="btn-action-primary">Manage Webhooks</button>
+        </div>
+
+        <!-- Magento (Adobe Commerce) -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #FFEBEE; color: #C62828;">⚡</div>
+              <span class="tag-soon">Coming Soon</span>
+            </div>
+            <div class="card-title">Magento (Adobe Commerce)</div>
+            <div class="card-desc">Enterprise-grade multi-store catalog sync and high-volume order management.</div>
+            <div class="card-details">Status: Ready for API Key Setup</div>
+          </div>
+          <button class="btn-action-secondary">Connect Magento</button>
+        </div>
+
+        <!-- BigCommerce -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #E0F7FA; color: #006064;">🚀</div>
+              <span class="tag-soon">Coming Soon</span>
+            </div>
+            <div class="card-title">BigCommerce API</div>
+            <div class="card-desc">Deep headless commerce integration for fast-scaling DTC brands.</div>
+            <div class="card-details">Status: OAuth2 Connection Ready</div>
+          </div>
+          <button class="btn-action-secondary">Connect BigCommerce</button>
+        </div>
+
+        <!-- Salesforce Commerce Cloud -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #E1F5FE; color: #0277BD;">☁️</div>
+              <span class="tag-soon">Coming Soon</span>
+            </div>
+            <div class="card-title">Salesforce Commerce Cloud</div>
+            <div class="card-desc">Enterprise omnichannel CRM sync for top-tier global retailers.</div>
+            <div class="card-details">Status: B2B Enterprise Bridge</div>
+          </div>
+          <button class="btn-action-secondary">Connect Salesforce</button>
+        </div>
+
+        <!-- Amazon & eBay Marketplaces -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #FFF8E1; color: #F57F17;">🌐</div>
+              <span class="tag-soon">Coming Soon</span>
+            </div>
+            <div class="card-title">Amazon & eBay Marketplaces</div>
+            <div class="card-desc">Automated dispute and return messaging for marketplace sellers.</div>
+            <div class="card-details">Status: SP-API Integration Prep</div>
+          </div>
+          <button class="btn-action-secondary">Connect Marketplace</button>
         </div>
       </div>
     </div>
@@ -562,16 +672,16 @@
       <div class="pricing-hero">
         <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">ENTERPRISE LICENSE - UNLIMITED</span>
         <h2 style="margin-top:12px; font-size:24px;">RetainAI Enterprise</h2>
-        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">All features, unlimited messaging, and AI retention engine in a single plan.</p>
+        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">All features, unlimited messaging, and multi-platform e-commerce synchronization.</p>
         
         <div class="price-main">$1,000 <span style="font-size:20px; font-weight:500; color:var(--text-secondary);">/ month</span></div>
         <div class="price-sub">Billed monthly, cancel anytime.</div>
 
         <ul class="feature-list">
           <li>Unlimited WhatsApp & Instagram Message Automation</li>
+          <li>Shopify, WooCommerce, Magento & BigCommerce Sync</li>
           <li>Google Sheets B2 Live Prompt Management</li>
           <li>Groq API Ultra-Fast Response Engine</li>
-          <li>Shopify & WooCommerce Full Synchronization</li>
           <li>Priority 24/7 Technical Support</li>
         </ul>
 
