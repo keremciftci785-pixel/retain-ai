@@ -158,6 +158,15 @@
       font-weight: 600;
     }
 
+    /* Sections */
+    .section-content {
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+    }
+
     /* Banner */
     .banner {
       background: var(--bg-card);
@@ -277,13 +286,6 @@
       margin-bottom: 16px;
     }
 
-    .card-details row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
-
-    /* Güçlendirilen Butonlar */
     .btn-action {
       width: 100%;
       background: #FFF;
@@ -321,7 +323,90 @@
       background: var(--accent-brown-hover);
     }
 
-    /* Modal (Giriş / Kayıt Pop-up) */
+    /* Live Chat Simülatörü */
+    .chat-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .chat-box {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      height: 300px;
+      padding: 16px;
+      overflow-y: auto;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-message {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      max-width: 80%;
+    }
+
+    .chat-message.customer {
+      background: #F1F0ED;
+      align-self: flex-start;
+      color: var(--text-primary);
+    }
+
+    .chat-message.ai {
+      background: var(--status-green-bg);
+      color: var(--status-green-text);
+      align-self: flex-end;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      outline: none;
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent-brown);
+      box-shadow: 0 4px 16px rgba(92,67,51,0.1);
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 16px 0;
+    }
+
+    /* Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -362,20 +447,6 @@
       cursor: pointer;
     }
 
-    .modal-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      text-align: center;
-    }
-
-    .modal-sub {
-      font-size: 13px;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     .form-group {
       margin-bottom: 14px;
     }
@@ -385,7 +456,6 @@
       font-size: 12px;
       font-weight: 600;
       margin-bottom: 4px;
-      color: var(--text-primary);
     }
 
     .form-group input {
@@ -394,12 +464,7 @@
       border: 1px solid var(--border-color);
       border-radius: 8px;
       background: #FFF;
-      font-size: 14px;
       outline: none;
-    }
-
-    .form-group input:focus {
-      border-color: var(--accent-brown);
     }
   </style>
 </head>
@@ -426,156 +491,156 @@
 
     <!-- Navigation Tabs -->
     <div class="tabs">
-      <button class="tab-btn active">🔌 Kanal Entegrasyonları</button>
-      <button class="tab-btn">🧠 İkna Motoru & Sheet B2</button>
-      <button class="tab-btn">💬 Canlı Kanal Testi</button>
-      <button class="tab-btn">🔑 Webhook & API Key</button>
+      <button class="tab-btn active" onclick="switchTab(0)">🔌 Kanal Entegrasyonları</button>
+      <button class="tab-btn" onclick="switchTab(1)">💬 Canlı Test Simülatörü</button>
+      <button class="tab-btn" onclick="switchTab(2)">💳 Fiyatlandırma</button>
     </div>
 
-    <!-- Banner -->
-    <div class="banner">
-      <div>
-        <div class="banner-title">Müşteri İletişim Kanallarınızı Bağlayın</div>
-        <div class="banner-desc">WhatsApp Business, Instagram DM veya e-ticaret altyapınızı bağlayın. Yapay zeka müşterilerinizden gelen iade taleplerini otomatik karşılayıp satışa dönüştürsün.</div>
+    <!-- TAB 1: Entegrasyonlar -->
+    <div class="section-content active" id="tab-0">
+      <div class="banner">
+        <div>
+          <div class="banner-title">Müşteri İletişim Kanallarınızı Bağlayın</div>
+          <div class="banner-desc">WhatsApp Business, Instagram DM veya e-ticaret altyapınızı bağlayın. Yapay zeka iade taleplerini otomatik karşılayıp satışa dönüştürsün.</div>
+        </div>
+        <div class="banner-stat">
+          <div class="stat-label">Aktif Bağlı Kanallar</div>
+          <div class="stat-val">3 / 5 Kanal</div>
+        </div>
       </div>
-      <div class="banner-stat">
-        <div class="stat-label">Aktif Bağlı Kanallar</div>
-        <div class="stat-val">3 / 5 Kanal</div>
+
+      <div class="grid">
+        <!-- WhatsApp -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #E8F5E9; color: #2E7D32;">💬</div>
+              <span class="tag-connected">● Bağlandı</span>
+            </div>
+            <div class="card-title">WhatsApp Business API</div>
+            <div class="card-desc">Müşteri iade mesajlarını otomatik yanıtlar.</div>
+            <div class="card-details">Bağlı Numara: +90 555 019 2834</div>
+          </div>
+          <button class="btn-action">Ayarları Yönet</button>
+        </div>
+
+        <!-- Instagram -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #FCE4EC; color: #C2185B;">📷</div>
+              <span class="tag-connected">● Bağlandı</span>
+            </div>
+            <div class="card-title">Instagram Direct Message</div>
+            <div class="card-desc">Beden sorguları ve ürün şikayetlerini karşılar.</div>
+            <div class="card-details">Sayfa: @brandstore.tr</div>
+          </div>
+          <button class="btn-action">Meta Hesabını Güncelle</button>
+        </div>
+
+        <!-- Shopify -->
+        <div class="card">
+          <div>
+            <div class="card-header">
+              <div class="channel-icon" style="background: #F0F4C3; color: #827717;">🛍️</div>
+              <span class="tag-pending">● Kurulum Bekliyor</span>
+            </div>
+            <div class="card-title">Shopify Mağaza Senkronu</div>
+            <div class="card-desc">Sipariş verilerini çekerek kupon tanımlamalarını otomatikleştirin.</div>
+            <div class="card-details">Admin API anahtarınızı bağlayın.</div>
+          </div>
+          <button class="btn-action-primary">Shopify API Key Ekle</button>
+        </div>
       </div>
     </div>
 
-    <!-- Integration Cards Grid -->
-    <div class="grid">
-      
-      <!-- WhatsApp Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #E8F5E9; color: #2E7D32;">💬</div>
-            <span class="tag-connected">● Bağlandı</span>
-          </div>
-          <div class="card-title">WhatsApp Business API</div>
-          <div class="card-desc">Müşteri iade mesajlarını WhatsApp sohbet hattınızdan otomatik yanıtlar.</div>
-          <div class="card-details">
-            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Bağlı Numara:</span> <strong>+90 555 019 2834</strong></div>
-            <div style="display:flex; justify-between;"><span>Son Etkileşim:</span> <strong>2 dakika önce</strong></div>
-          </div>
+    <!-- TAB 2: Canlı Test Simülatörü -->
+    <div class="section-content" id="tab-1">
+      <div class="chat-container">
+        <div style="font-weight:700; margin-bottom:12px;">Yapay Zeka İkna Motoru Test Paneli</div>
+        <div class="chat-box" id="chatBox">
+          <div class="chat-message ai">Merhaba! Ben RetainAI İkna Asistanıyım. Müşterinin iade talebine nasıl yanıt vermemi istersiniz? Test edin!</div>
         </div>
-        <button class="btn-action">Ayarları Yönet</button>
-      </div>
-
-      <!-- Instagram Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #FCE4EC; color: #C2185B;">📷</div>
-            <span class="tag-connected">● Bağlandı</span>
-          </div>
-          <div class="card-title">Instagram Direct Message</div>
-          <div class="card-desc">Instagram sayfanıza gelen iade, beden sorguları ve ürün şikayetlerini karşılar.</div>
-          <div class="card-details">
-            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Sayfa Adı:</span> <strong>@brandstore.tr</strong></div>
-            <div style="display:flex; justify-between;"><span>Webhook Durumu:</span> <strong>Aktif Dinlemede</strong></div>
-          </div>
+        <div class="chat-input-area">
+          <input type="text" id="userInput" placeholder="Örn: Ürün büyük geldi iade etmek istiyorum..." onkeypress="if(event.key === 'Enter') sendTestMessage()">
+          <button class="btn-action-primary" style="width: auto; padding: 0 20px;" onclick="sendTestMessage()">Gönder</button>
         </div>
-        <button class="btn-action">Meta Hesabını Güncelle</button>
       </div>
-
-      <!-- Shopify Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #F0F4C3; color: #827717;">🛍️</div>
-            <span class="tag-pending">● Kurulum Bekliyor</span>
-          </div>
-          <div class="card-title">Shopify Mağaza Senkronu</div>
-          <div class="card-desc">Sipariş verilerini çekerek beden değişimi ve kupon tanımlamalarını otomatikleştirin.</div>
-          <div class="card-details">
-            Sipariş doğrulama ve stoğu anlık eşleme için Shopify Admin API anahtarınızı bağlayın.
-          </div>
-        </div>
-        <button class="btn-action-primary">Shopify API Key Ekle</button>
-      </div>
-
-      <!-- Google Sheets Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #E0F2F1; color: #00695C;">📊</div>
-            <span class="tag-connected">● Hücre B2 Senkronize</span>
-          </div>
-          <div class="card-title">Google Sheets Prompt Hub</div>
-          <div class="card-desc">Sistem yönergelerini ve ikna kurallarını Google Tablonuzdan anlık okur.</div>
-          <div class="card-details">
-            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Hedef Hücre:</span> <strong>Tablo 1 -> B2</strong></div>
-            <div style="display:flex; justify-between;"><span>Model:</span> <strong>openai/gpt-oss-20b</strong></div>
-          </div>
-        </div>
-        <button class="btn-action">Prompt Düzenle</button>
-      </div>
-
-      <!-- WooCommerce Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #E1BEE7; color: #7B1FA2;">🔌</div>
-            <span class="tag-connected">● Bağlandı</span>
-          </div>
-          <div class="card-title">WooCommerce Entegrasyonu</div>
-          <div class="card-desc">WordPress tabanlı e-ticaret sitenizin iade taleplerini yakalar.</div>
-          <div class="card-details">
-            <div style="display:flex; justify-between;"><span>Mağaza URL:</span> <strong>https://mybrand.com</strong></div>
-          </div>
-        </div>
-        <button class="btn-action">Baglantıyı Kontrol Et</button>
-      </div>
-
-      <!-- Custom Webhook Card -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="channel-icon" style="background: #E0E0E0; color: #424242;">⚡</div>
-            <span class="tag-pending">Zapier / Make</span>
-          </div>
-          <div class="card-title">Özel Webhook & Mobil App</div>
-          <div class="card-desc">Kendi özel yazılımınız veya mobil uygulamanız için Webhook endpoint adresi.</div>
-          <div class="card-details">
-            Canlı Webhook URL'nize HTTP POST istekleri göndererek yanıt alın.
-          </div>
-        </div>
-        <button class="btn-action">Webhook URL Kopyala</button>
-      </div>
-
     </div>
+
+    <!-- TAB 3: Fiyatlandırma -->
+    <div class="section-content" id="tab-2">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div>
+            <h3>Başlangıç</h3>
+            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Küçük e-ticaret siteleri için.</p>
+            <div class="price">1.499 ₺ <span style="font-size:14px; font-weight:400;">/ ay</span></div>
+          </div>
+          <button class="btn-action" onclick="toggleModal()">Hemen Başla</button>
+        </div>
+        <div class="pricing-card featured">
+          <div>
+            <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">EN ÇOK TERCİH EDİLEN</span>
+            <h3 style="margin-top:8px;">Profesyonel</h3>
+            <p style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Büyüyen markalar için tam otomasyon.</p>
+            <div class="price">3.499 ₺ <span style="font-size:14px; font-weight:400;">/ ay</span></div>
+          </div>
+          <button class="btn-action-primary" onclick="toggleModal()">Pro'ya Geç</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Modal Pop-up -->
+  <!-- Modal -->
   <div class="modal-overlay" id="authModal">
     <div class="modal-box">
       <button class="modal-close" onclick="toggleModal()">✕</button>
-      <div class="modal-title">RetainAI'ya Hoş Geldiniz</div>
-      <div class="modal-sub">E-ticaret mağazanızı bağlayın ve ikna yapay zekasını kullanmaya başlayın.</div>
-      
-      <form onsubmit="event.preventDefault(); alert('Giriş başarılı!'); toggleModal();">
+      <div style="font-size:20px; font-weight:700; text-align:center; margin-bottom:6px;">RetainAI'ya Katılın</div>
+      <form onsubmit="event.preventDefault(); alert('İşlem başarılı!'); toggleModal();">
         <div class="form-group">
-          <label>E-Posta Adresiniz</label>
+          <label>E-Posta Adresi</label>
           <input type="email" placeholder="ornek@magaza.com" required>
         </div>
         <div class="form-group">
           <label>Şifre</label>
           <input type="password" placeholder="••••••••" required>
         </div>
-        <button type="submit" class="btn-action-primary" style="margin-top:10px;">Giriş Yap / Ücretsiz Kaydol</button>
+        <button type="submit" class="btn-action-primary">Devam Et</button>
       </form>
     </div>
   </div>
 
   <script>
     function toggleModal() {
-      const modal = document.getElementById('authModal');
-      modal.classList.toggle('active');
+      document.getElementById('authModal').classList.toggle('active');
+    }
+
+    function switchTab(index) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      document.querySelectorAll('.section-content').forEach((sec, i) => {
+        sec.classList.toggle('active', i === index);
+      });
+    }
+
+    function sendTestMessage() {
+      const input = document.getElementById('userInput');
+      const chatBox = document.getElementById('chatBox');
+      if(!input.value.trim()) return;
+
+      const userText = input.value;
+      chatBox.innerHTML += `<div class="chat-message customer">${userText}</div>`;
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      setTimeout(() => {
+        chatBox.innerHTML += `<div class="chat-message ai">Harika bir ürün seçtiniz! İade yerine size özel %20 indirim kuponu tanımlayalım ya da ücretsiz beden değişimi yapalım? (Groq API B2 İkna Yanıtı)</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 1000);
     }
   </script>
-
 </body>
 </html>
