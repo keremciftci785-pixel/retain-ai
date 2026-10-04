@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RetainAI - Akıllı Satış & İade Önleme Platformu</title>
+  <title>RetainAI - Smart Sales & Return Prevention Platform</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -271,7 +271,7 @@
       background: var(--accent-brown-hover);
     }
 
-    /* Canlı Chat Simülatörü */
+    /* Live Chat Simulator */
     .chat-layout {
       display: grid;
       grid-template-columns: 320px 1fr;
@@ -359,7 +359,7 @@
       background: #FFF;
     }
 
-    /* TEKİL VE NET $1,000 / 49.130 TL FİYATLANDIRMA KARTI */
+    /* Pricing Section */
     .pricing-hero {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -386,7 +386,7 @@
     .feature-list {
       text-align: left;
       margin: 24px auto;
-      max-width: 420px;
+      max-width: 440px;
       font-size: 14px;
       color: var(--text-secondary);
       display: flex;
@@ -478,31 +478,31 @@
         <div class="logo-icon">R</div>
         <div class="brand-text">
           <h1>RetainAI <span class="badge">ENTERPRISE</span></h1>
-          <p>WhatsApp & Instagram AI Satış Tutundurma Platformu</p>
+          <p>WhatsApp & Instagram AI Sales Retention Platform</p>
         </div>
       </div>
       <div class="header-actions">
         <div class="status-pill">
           <div class="status-dot"></div>
-          Google Sheets & Groq API Bağlı
+          Google Sheets & Groq API Connected
         </div>
-        <button class="btn-auth" onclick="toggleModal()">Giriş Yap / Üye Ol</button>
+        <button class="btn-auth" onclick="toggleModal()">Sign In / Register</button>
       </div>
     </header>
 
     <!-- Navigation Tabs -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab(0)">🔌 Kanal Entegrasyonları</button>
-      <button class="tab-btn" onclick="switchTab(1)">💬 Canlı Test Simülatörü</button>
-      <button class="tab-btn" onclick="switchTab(2)">💳 Fiyatlandırma</button>
+      <button class="tab-btn active" onclick="switchTab(0)">🔌 Channel Integrations</button>
+      <button class="tab-btn" onclick="switchTab(1)">💬 Live Test Simulator</button>
+      <button class="tab-btn" onclick="switchTab(2)">💳 Pricing ($1,000)</button>
     </div>
 
-    <!-- TAB 0: Kanal Entegrasyonları -->
+    <!-- TAB 0: Channel Integrations -->
     <div class="section-content active" id="tab-0">
       <div class="banner">
         <div>
-          <div class="banner-title">Müşteri İletişim Kanallarınızı Bağlayın</div>
-          <div class="banner-desc">WhatsApp Business ve Instagram DM entegrasyonu ile iade taleplerini otomatik olarak satışa dönüştürün.</div>
+          <div class="banner-title">Connect Your Customer Communication Channels</div>
+          <div class="banner-desc">Turn return requests into automated sales effortlessly with WhatsApp Business and Instagram DM integrations.</div>
         </div>
       </div>
 
@@ -511,71 +511,71 @@
           <div>
             <div class="card-header">
               <div class="channel-icon" style="background: #E8F5E9; color: #2E7D32;">💬</div>
-              <span class="tag-connected">● Bağlandı</span>
+              <span class="tag-connected">● Connected</span>
             </div>
             <div class="card-title">WhatsApp Business API</div>
-            <div class="card-desc">Müşteri iade mesajlarını otomatik yanıtlar.</div>
-            <div class="card-details">Bağlı Numara: +90 555 019 2834</div>
+            <div class="card-desc">Automatically replies and retains customers requesting returns.</div>
+            <div class="card-details">Connected Number: +1 (555) 019-2834</div>
           </div>
-          <button class="btn-action-primary">Ayarları Yönet</button>
+          <button class="btn-action-primary">Manage Settings</button>
         </div>
 
         <div class="card">
           <div>
             <div class="card-header">
               <div class="channel-icon" style="background: #FCE4EC; color: #C2185B;">📷</div>
-              <span class="tag-connected">● Bağlandı</span>
+              <span class="tag-connected">● Connected</span>
             </div>
             <div class="card-title">Instagram Direct Message</div>
-            <div class="card-desc">Beden sorguları ve ürün şikayetlerini karşılar.</div>
-            <div class="card-details">Sayfa: @brandstore.tr</div>
+            <div class="card-desc">Handles sizing queries and product complaints instantly.</div>
+            <div class="card-details">Handle: @brandstore.global</div>
           </div>
-          <button class="btn-action-primary">Meta Hesabını Güncelle</button>
+          <button class="btn-action-primary">Update Meta Account</button>
         </div>
       </div>
     </div>
 
-    <!-- TAB 1: Canlı Test Simülatörü -->
+    <!-- TAB 1: Live Test Simulator -->
     <div class="section-content" id="tab-1">
       <div class="chat-layout">
         <div class="chat-sidebar">
-          <div style="font-weight:700; font-size:14px; margin-bottom:12px;">Örnek Senaryolar</div>
-          <button class="scenario-btn" onclick="setQuery('Ürünü beğenmedim iade etmek istiyorum')">"Ürünü beğenmedim iade etmek istiyorum"</button>
-          <button class="scenario-btn" onclick="setQuery('Beden olmadı çok dar geldi')">"Beden olmadı çok dar geldi"</button>
-          <button class="scenario-btn" onclick="setQuery('Kargo nerede kaldı iptal edeceğim')">"Kargo nerede kaldı iptal edeceğim"</button>
+          <div style="font-weight:700; font-size:14px; margin-bottom:12px;">Sample Scenarios</div>
+          <button class="scenario-btn" onclick="setQuery('I did not like the product, I want a return')">"I did not like the product, I want a return"</button>
+          <button class="scenario-btn" onclick="setQuery('The size did not fit, it is too tight')">"The size did not fit, it is too tight"</button>
+          <button class="scenario-btn" onclick="setQuery('Where is my shipping? I will cancel it')">"Where is my shipping? I will cancel it"</button>
         </div>
         <div class="chat-main">
-          <div style="font-weight:700; margin-bottom:8px; font-size:14px;">WhatsApp & Instagram Canlı Simülatör</div>
+          <div style="font-weight:700; margin-bottom:8px; font-size:14px;">WhatsApp & Instagram Live Simulator</div>
           <div class="chat-box" id="chatBox">
-            <div class="chat-message ai">Merhaba! Ben RetainAI yapay zeka ikna motoruyum. Sol taraftaki senaryolardan birine tıklayarak veya aşağıdan mesaj yazarak test edebilirsiniz.</div>
+            <div class="chat-message ai">Hello! I am the RetainAI retention engine. Click any scenario on the left or type your message below to test.</div>
           </div>
           <div class="chat-input-area">
-            <input type="text" id="userInput" placeholder="Mesajınızı yazın..." onkeypress="if(event.key === 'Enter') sendTestMessage()">
-            <button class="btn-action-primary" style="width: auto; padding: 0 20px;" onclick="sendTestMessage()">Gönder</button>
+            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="if(event.key === 'Enter') sendTestMessage()">
+            <button class="btn-action-primary" style="width: auto; padding: 0 20px;" onclick="sendTestMessage()">Send</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 2: Tekil & Net $1,000 Fiyatlandırma ($1 = 49.13 TL) -->
+    <!-- TAB 2: Pricing -->
     <div class="section-content" id="tab-2">
       <div class="pricing-hero">
-        <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">KURUMSAL LİSANS - TEK PAKET</span>
+        <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">ENTERPRISE LICENSE - UNLIMITED</span>
         <h2 style="margin-top:12px; font-size:24px;">RetainAI Enterprise</h2>
-        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Tüm özellikler, sınırsız mesajlaşma ve yapay zeka motoru tek planda.</p>
+        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">All features, unlimited messaging, and AI retention engine in a single plan.</p>
         
-        <div class="price-main">$1,000 <span style="font-size:20px; font-weight:500; color:var(--text-secondary);">/ ay</span></div>
-        <div class="price-sub">49.130 TL / ay (Kur: $1 = 49,13 TL)</div>
+        <div class="price-main">$1,000 <span style="font-size:20px; font-weight:500; color:var(--text-secondary);">/ month</span></div>
+        <div class="price-sub">Billed monthly, cancel anytime.</div>
 
         <ul class="feature-list">
-          <li>Sınırsız WhatsApp & Instagram Entegrasyonu</li>
-          <li>Google Sheets B2 Canlı Prompt Yönetimi</li>
-          <li>Groq API En Hızlı Yanıt Motoru</li>
-          <li>Shopify & WooCommerce Tam Senkronizasyon</li>
-          <li>Öncelikli 7/24 Teknik Destek</li>
+          <li>Unlimited WhatsApp & Instagram Message Automation</li>
+          <li>Google Sheets B2 Live Prompt Management</li>
+          <li>Groq API Ultra-Fast Response Engine</li>
+          <li>Shopify & WooCommerce Full Synchronization</li>
+          <li>Priority 24/7 Technical Support</li>
         </ul>
 
-        <button class="btn-action-primary" style="margin-top:16px; padding: 14px; font-size:15px;" onclick="toggleModal()">Hemen Abone Ol</button>
+        <button class="btn-action-primary" style="margin-top:16px; padding: 14px; font-size:15px;" onclick="toggleModal()">Subscribe Now</button>
       </div>
     </div>
 
@@ -585,18 +585,18 @@
   <div class="modal-overlay" id="authModal">
     <div class="modal-box">
       <button class="modal-close" onclick="toggleModal()">✕</button>
-      <div style="font-size:20px; font-weight:700; text-align:center; margin-bottom:6px;">RetainAI'ya Katılın</div>
-      <div style="font-size:13px; color:var(--text-secondary); text-align:center; margin-bottom:16px;">Enterprise Lisans: $1,000 (49.130 TL) / ay</div>
-      <form onsubmit="event.preventDefault(); alert('Kayıt / Ödeme sayfasına yönlendiriliyorsunuz!'); toggleModal();">
+      <div style="font-size:20px; font-weight:700; text-align:center; margin-bottom:6px;">Join RetainAI</div>
+      <div style="font-size:13px; color:var(--text-secondary); text-align:center; margin-bottom:16px;">Enterprise License: $1,000 / month</div>
+      <form onsubmit="event.preventDefault(); alert('Redirecting to checkout/payment gateway!'); toggleModal();">
         <div class="form-group">
-          <label>E-Posta Adresi</label>
-          <input type="email" placeholder="ornek@magaza.com" required>
+          <label>Email Address</label>
+          <input type="email" placeholder="example@brand.com" required>
         </div>
         <div class="form-group">
-          <label>Şifre</label>
+          <label>Password</label>
           <input type="password" placeholder="••••••••" required>
         </div>
-        <button type="submit" class="btn-action-primary" style="margin-top:10px;">Devam Et</button>
+        <button type="submit" class="btn-action-primary" style="margin-top:10px;">Continue</button>
       </form>
     </div>
   </div>
@@ -631,7 +631,7 @@
       chatBox.scrollTop = chatBox.scrollHeight;
 
       setTimeout(() => {
-        chatBox.innerHTML += `<div class="chat-message ai">Harika bir tercih! İade yerine size özel %20 indirim kuponu tanımlayalım ya da ücretsiz değişim yapalım? (Groq API B2 İkna Yanıtı)</div>`;
+        chatBox.innerHTML += `<div class="chat-message ai">Great choice! Instead of a return, how about a 20% discount coupon or a free size exchange? (Groq API B2 Retention Response)</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
       }, 800);
     }
