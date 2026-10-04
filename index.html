@@ -1,775 +1,581 @@
 <!DOCTYPE html>
-<html lang="tr" class="h-full">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RetainAI - Akıllı Satış & İade Önleme SaaS Entegrasyon Paneli</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Font: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-          },
-          colors: {
-            cream: {
-              50: '#FDFBF7',
-              100: '#F7F3EB',
-              200: '#EFE8DC',
-              300: '#E0D3C1',
-              400: '#C8B49B',
-              500: '#8C6D53',
-              600: '#72563F',
-              700: '#58412E',
-              800: '#3A2C20',
-              900: '#231B13',
-            },
-            accent: {
-              waGreen: '#25D366',
-              igPink: '#E1306C',
-              shopifyGreen: '#95BF47',
-              wooPurple: '#7F54B3',
-              warmGold: '#D4A359',
-            }
-          }
-        }
-      }
-    }
-  </script>
-
+  <title>RetainAI - Akıllı Satış & İade Önleme Platformu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    :root {
+      --bg-main: #FDFBF7;
+      --bg-card: #FAF6F0;
+      --bg-card-hover: #F5EFE6;
+      --border-color: #EFE8DC;
+      --text-primary: #2C2623;
+      --text-secondary: #786C65;
+      --accent-brown: #5C4333;
+      --accent-brown-hover: #4A3528;
+      --status-green-bg: #E3F4EB;
+      --status-green-text: #1B7A4B;
+      --status-orange-bg: #FDF0D5;
+      --status-orange-text: #B26B00;
     }
-    ::-webkit-scrollbar-track {
-      background: #F7F3EB;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #C8B49B;
-      border-radius: 9999px;
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      padding: 24px;
+      line-height: 1.5;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #8C6D53;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .modal-backdrop {
-      background-color: rgba(35, 27, 19, 0.4);
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-brown);
+      color: #FFF;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 11px;
+      background: var(--border-color);
+      color: var(--text-secondary);
+      padding: 2px 8px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    .btn-auth {
+      background: var(--accent-brown);
+      color: #FFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-auth:hover {
+      background: var(--accent-brown-hover);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Banner */
+    .banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .banner-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .banner-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+
+    .banner-stat {
+      text-align: right;
+    }
+
+    .stat-val {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .channel-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .tag-connected {
+      background: var(--status-green-bg);
+      color: var(--status-green-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .tag-pending {
+      background: var(--status-orange-bg);
+      color: var(--status-orange-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .card-details {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .card-details row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    /* Güçlendirilen Butonlar */
+    .btn-action {
+      width: 100%;
+      background: #FFF;
+      border: 1px solid #D5C8B8;
+      color: var(--text-primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .btn-action:hover {
+      background: var(--accent-brown);
+      color: #FFF;
+      border-color: var(--accent-brown);
+    }
+
+    .btn-action-primary {
+      width: 100%;
+      background: var(--accent-brown);
+      color: #FFF;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-action-primary:hover {
+      background: var(--accent-brown-hover);
+    }
+
+    /* Modal (Giriş / Kayıt Pop-up) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 38, 35, 0.4);
       backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
     }
-    .tab-active {
-      background-color: #FDFBF7;
-      color: #3A2C20;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      border-color: #EFE8DC;
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: #FFF;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent-brown);
     }
   </style>
 </head>
-<body class="bg-cream-50 text-cream-900 font-sans h-full flex flex-col antialiased selection:bg-cream-200">
+<body>
 
-  <header class="bg-cream-100/90 backdrop-blur-md border-b border-cream-200 sticky top-0 z-30 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- Brand Logo & Name -->
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-2xl bg-cream-500 text-cream-50 flex items-center justify-center shadow-md font-bold text-xl">
-          <i class="fa-solid fa-arrows-spin"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-extrabold text-cream-900 text-lg sm:text-xl tracking-tight">RetainAI</h1>
-            <span class="bg-cream-200 text-cream-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">SaaS Hub</span>
-          </div>
-          <p class="text-xs text-cream-600 font-medium">WhatsApp & Instagram AI Satış Tutundurma Platformu</p>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo-icon">R</div>
+        <div class="brand-text">
+          <h1>RetainAI <span class="badge">SAAS HUB</span></h1>
+          <p>WhatsApp & Instagram AI Satış Tutundurma Platformu</p>
         </div>
       </div>
-
-      <!-- Health Status Badge & Quick Actions -->
-      <div class="flex items-center gap-4">
-        <div class="hidden md:flex items-center gap-2 px-3.5 py-1.5 bg-cream-50 border border-cream-200 rounded-full text-xs font-medium text-cream-700 shadow-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Google Sheets & Groq API Bağlı</span>
+      <div class="header-actions">
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          Google Sheets & Groq API Bağlı
         </div>
+        <button class="btn-auth" onclick="toggleModal()">Giriş Yap / Üye Ol</button>
+      </div>
+    </header>
 
-        <button id="quickApiBtn" class="bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition flex items-center gap-2">
-          <i class="fa-solid fa-key"></i>
-          <span class="hidden sm:inline">API & Webhook</span>
-        </button>
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active">🔌 Kanal Entegrasyonları</button>
+      <button class="tab-btn">🧠 İkna Motoru & Sheet B2</button>
+      <button class="tab-btn">💬 Canlı Kanal Testi</button>
+      <button class="tab-btn">🔑 Webhook & API Key</button>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+      <div>
+        <div class="banner-title">Müşteri İletişim Kanallarınızı Bağlayın</div>
+        <div class="banner-desc">WhatsApp Business, Instagram DM veya e-ticaret altyapınızı bağlayın. Yapay zeka müşterilerinizden gelen iade taleplerini otomatik karşılayıp satışa dönüştürsün.</div>
+      </div>
+      <div class="banner-stat">
+        <div class="stat-label">Aktif Bağlı Kanallar</div>
+        <div class="stat-val">3 / 5 Kanal</div>
       </div>
     </div>
 
-    <!-- Navigation Tabs Bar -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 border-t border-cream-200/60 pt-1 pb-1 overflow-x-auto">
-      <button data-tab="integrations" class="nav-tab tab-active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 border border-transparent whitespace-nowrap">
-        <i class="fa-solid fa-plug text-cream-500"></i> Kanal Entegrasyonları
-      </button>
-      <button data-tab="prompt" class="nav-tab text-cream-600 hover:text-cream-900 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-2 border border-transparent whitespace-nowrap">
-        <i class="fa-solid fa-brain text-cream-500"></i> İkna Motoru & Sheet B2
-      </button>
-      <button data-tab="simulator" class="nav-tab text-cream-600 hover:text-cream-900 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-2 border border-transparent whitespace-nowrap">
-        <i class="fa-solid fa-vial text-cream-500"></i> Canlı Kanal Testi
-      </button>
-      <button data-tab="webhooks" class="nav-tab text-cream-600 hover:text-cream-900 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-2 border border-transparent whitespace-nowrap">
-        <i class="fa-solid fa-code text-cream-500"></i> Webhook & API Key
-      </button>
-    </div>
-  </header>
-
-  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
-
-    <!-- TAB 1: INTEGRATIONS GRID -->
-    <section id="tab-integrations" class="tab-content space-y-6">
+    <!-- Integration Cards Grid -->
+    <div class="grid">
       
-      <!-- Intro Banner -->
-      <div class="bg-cream-100 border border-cream-200/90 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="space-y-1">
-          <h2 class="text-base sm:text-lg font-bold text-cream-900 flex items-center gap-2">
-            <i class="fa-solid fa-circle-nodes text-cream-500"></i> Müşteri İletişim Kanallarınızı Bağlayın
-          </h2>
-          <p class="text-xs sm:text-sm text-cream-600 max-w-2xl">
-            WhatsApp Business, Instagram DM veya e-ticaret altyapınızı bağlayın. Yapay zeka müşterilerinizden gelen iade ve değişim taleplerini otomatik karşılayıp satışa dönüştürsün.
-          </p>
-        </div>
-        <div class="flex items-center gap-3 shrink-0">
-          <div class="text-right">
-            <span class="text-xs font-semibold text-cream-500 block">Aktif Bağlı Kanallar</span>
-            <span class="text-lg font-bold text-cream-900">3 / 5 Kanal</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Integration Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- WhatsApp Business Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-accent-waGreen flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-brands fa-whatsapp"></i>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Bağlandı
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">WhatsApp Business API</h3>
-              <p class="text-xs text-cream-600 mt-1">Müşteri iade mesajlarını WhatsApp sohbet hattınızdan otomatik yanıtlar.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs space-y-1">
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Bağlı Numara:</span>
-                <span class="font-mono font-medium">+90 555 019 2834</span>
-              </div>
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Son Etkileşim:</span>
-                <span>2 dakika önce</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="openModal('waModal')" class="flex-1 bg-cream-200 hover:bg-cream-300 text-cream-800 font-semibold text-xs py-2.5 rounded-xl transition">
-              Ayarları Yönet
-            </button>
-            <button class="px-3 bg-cream-50 border border-cream-200 text-cream-600 hover:text-red-600 rounded-xl transition text-xs">
-              <i class="fa-solid fa-power-off"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Instagram DM Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-pink-100 text-accent-igPink flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Bağlandı
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">Instagram Direct Message</h3>
-              <p class="text-xs text-cream-600 mt-1">Instagram sayfanıza gelen iade, beden sorguları ve ürün şikayetlerini karşılar.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs space-y-1">
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Sayfa Adı:</span>
-                <span class="font-medium">@brandstore.tr</span>
-              </div>
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Webhook Durumu:</span>
-                <span class="text-emerald-700 font-medium">Aktif Dinlemede</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="openModal('igModal')" class="flex-1 bg-cream-200 hover:bg-cream-300 text-cream-800 font-semibold text-xs py-2.5 rounded-xl transition">
-              Meta Hesabını Güncelle
-            </button>
-          </div>
-        </div>
-
-        <!-- Shopify Integration Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-lime-100 text-accent-shopifyGreen flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-brands fa-shopify"></i>
-              </div>
-              <span class="text-[11px] font-bold text-amber-800 bg-amber-100/80 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span> Kurulum Bekliyor
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">Shopify Mağaza Senkronu</h3>
-              <p class="text-xs text-cream-600 mt-1">Sipariş verilerini çekerek beden değişimi ve kupon tanımlamalarını otomatikleştirin.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs text-cream-500">
-              Sipariş doğrulama ve stoğu anlık eşleme için Shopify Admin API anahtarınızı bağlayın.
-            </div>
-          </div>
-          <button onclick="openModal('shopifyModal')" class="w-full bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs py-2.5 rounded-xl transition shadow-sm">
-            Shopify API Key Ekle
-          </button>
-        </div>
-
-        <!-- Google Sheets Cell B2 Sync Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-solid fa-table-cells"></i>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Hücre B2 Senkronize
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">Google Sheets Prompt Hub</h3>
-              <p class="text-xs text-cream-600 mt-1">Yapay zekanın ikna kurallarını doğrudan Google Sheets B2 hücresinden okur.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs space-y-1">
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Okunan Hücre:</span>
-                <span class="font-mono font-medium">Sayfa1!B2</span>
-              </div>
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Google Apps Script:</span>
-                <span class="text-emerald-700 font-medium">doPost() Aktif</span>
-              </div>
-            </div>
-          </div>
-          <button onclick="switchTab('prompt')" class="w-full bg-cream-200 hover:bg-cream-300 text-cream-800 font-semibold text-xs py-2.5 rounded-xl transition">
-            Prompt Kurallarını Düzenle
-          </button>
-        </div>
-
-        <!-- WooCommerce Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-purple-50 text-accent-wooPurple flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-brands fa-wordpress"></i>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Bağlandı
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">WooCommerce Entegrasyonu</h3>
-              <p class="text-xs text-cream-600 mt-1">WordPress e-ticaret sitenizdeki iade ve sipariş akışıyla entegre çalışır.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs space-y-1">
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Mağaza URL:</span>
-                <span class="font-medium">mystore.com</span>
-              </div>
-              <div class="flex justify-between text-cream-700">
-                <span class="text-cream-500">Rest API:</span>
-                <span class="text-emerald-700 font-medium">v3 Doğrulandı</span>
-              </div>
-            </div>
-          </div>
-          <button onclick="openModal('wooModal')" class="w-full bg-cream-200 hover:bg-cream-300 text-cream-800 font-semibold text-xs py-2.5 rounded-xl transition">
-            API Bağlantısını Düzenle
-          </button>
-        </div>
-
-        <!-- Custom Webhook Card -->
-        <div class="bg-cream-100 border border-cream-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-5 hover:border-cream-300 transition">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-cream-200 text-cream-700 flex items-center justify-center text-2xl shadow-sm">
-                <i class="fa-solid fa-code-branch"></i>
-              </div>
-              <span class="text-[11px] font-bold text-cream-700 bg-cream-200 px-2.5 py-1 rounded-full">
-                Zapier / Make
-              </span>
-            </div>
-            <div>
-              <h3 class="font-bold text-cream-900 text-base">Özel Webhook & Mobil App</h3>
-              <p class="text-xs text-cream-600 mt-1">Kendi mobil uygulamanıza veya N8N / Make.com otomasyonlarına bağlayın.</p>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200/60 text-xs text-cream-500">
-              JSON formatında mesaj gönderip ikna edilmiş AI cevabını saniyeler içinde alın.
-            </div>
-          </div>
-          <button onclick="switchTab('webhooks')" class="w-full bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs py-2.5 rounded-xl transition shadow-sm">
-            Webhook Endpoint Al
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- TAB 2: PROMPT ENGINE & RULES -->
-    <section id="tab-prompt" class="tab-content hidden space-y-6">
-      
-      <div class="bg-cream-100 border border-cream-200/90 rounded-2xl p-6 shadow-sm space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-cream-200 pb-4">
-          <div>
-            <h2 class="text-base sm:text-lg font-bold text-cream-900 flex items-center gap-2">
-              <i class="fa-solid fa-sliders text-cream-500"></i> Google Sheet B2 - Sistem İkna Yönergesi
-            </h2>
-            <p class="text-xs text-cream-600 mt-0.5">Yapay zekanın müşterilerinizle konuşurken uyması gereken psikolojik kurallar.</p>
-          </div>
-          <span class="self-start sm:self-auto text-xs bg-emerald-100 text-emerald-800 font-semibold px-3 py-1 rounded-full border border-emerald-200">
-            Groq Llama-3.3-70b Senkronize
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <label class="block text-xs font-bold text-cream-800 uppercase tracking-wider">
-            Sistem Prompt Metni (Sayfa1!B2)
-          </label>
-          <textarea id="promptInput" rows="7" class="w-full bg-cream-50 border border-cream-200 rounded-xl p-4 text-xs sm:text-sm text-cream-900 leading-relaxed font-mono focus:outline-none focus:ring-2 focus:ring-cream-400 resize-none shadow-inner" placeholder="Müşteri mesajlarına verilecek tepki kurallarını giriniz...">Sen profesyonel, empatik ve satış kapatıcı bir e-ticaret müşteri ilişki uzmanısın.
-ÖNEMLİ KURALLAR:
-1. Müşteri iade talep ettiğinde asla hemen "iade" veya "kargo" kelimesini yan yana kullanma.
-2. Önce ürünle ilgili beklentiyi ve tam sorunu nazikçe öğren.
-3. Beden veya renk sorunu varsa kargo ücretiz değişim teklif et.
-4. Ürünü beğenmediyse %15 indirim çeki veya hediye ürünü önererek müşteri kaybını önle.
-5. Samimi, doğal ve güven verici bir Türkçe kullan.</textarea>
-          
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-            <span class="text-xs text-cream-500 italic">
-              <i class="fa-solid fa-circle-info me-1"></i> Bu alanı kaydettiğinizde Google Sheet B2 hücresi anında güncellenir.
-            </span>
-            <button id="savePromptBtn" class="w-full sm:w-auto bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs px-6 py-3 rounded-xl shadow-sm transition flex items-center justify-center gap-2">
-              <i class="fa-solid fa-floppy-disk"></i>
-              <span>Prompt Ayarlarını Google Sheet'e Kaydet</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Strategy Toggles Grid -->
-        <div class="pt-6 border-t border-cream-200/80 space-y-4">
-          <h3 class="text-sm font-bold text-cream-900">Otomatik İkna & Tutundurma Kuralları</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            
-            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-cream-50 border border-cream-200/70 hover:bg-cream-100 transition cursor-pointer">
-              <input type="checkbox" checked class="mt-1 accent-cream-600 w-4 h-4 rounded">
-              <div>
-                <span class="text-xs font-bold text-cream-900 block">Önce Sorunu Teşhis Et</span>
-                <span class="text-[11px] text-cream-600">İade kelimesini duyunca doğrudan iade adresi vermek yerine nedenini sorgular.</span>
-              </div>
-            </label>
-
-            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-cream-50 border border-cream-200/70 hover:bg-cream-100 transition cursor-pointer">
-              <input type="checkbox" checked class="mt-1 accent-cream-600 w-4 h-4 rounded">
-              <div>
-                <span class="text-xs font-bold text-cream-900 block">Ücretsiz Değişim Teklifi</span>
-                <span class="text-[11px] text-cream-600">Beden veya renk Uyumsuzluğunda kargo sizden olacak şekilde değişim sunar.</span>
-              </div>
-            </label>
-
-            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-cream-50 border border-cream-200/70 hover:bg-cream-100 transition cursor-pointer">
-              <input type="checkbox" checked class="mt-1 accent-cream-600 w-4 h-4 rounded">
-              <div>
-                <span class="text-xs font-bold text-cream-900 block">%15 İndirim Çeki Tanımla</span>
-                <span class="text-[11px] text-cream-600">Müşteri ürünü tutarsa sonraki alışverişi için kupon önerir.</span>
-              </div>
-            </label>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 3: SIMULATOR & TESTER -->
-    <section id="tab-simulator" class="tab-content hidden space-y-6">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        <!-- Controls & Presets -->
-        <div class="lg:col-span-4 bg-cream-100 border border-cream-200/80 rounded-2xl p-5 shadow-sm space-y-5">
-          <div>
-            <h3 class="text-sm font-bold text-cream-900 flex items-center gap-2">
-              <i class="fa-solid fa-gamepad text-cream-500"></i> Kanal Test Parametreleri
-            </h3>
-            <p class="text-xs text-cream-600 mt-1">Sistemin WhatsApp ve Instagram mesajlarına nasıl tepki verdiğini canlı test edin.</p>
-          </div>
-
-          <!-- Select Channel -->
-          <div class="space-y-1.5">
-            <label class="text-xs font-semibold text-cream-700">Simüle Edilecek Kanal</label>
-            <select id="channelSelect" class="w-full bg-cream-50 border border-cream-200 rounded-xl px-3 py-2 text-xs text-cream-800 font-medium focus:outline-none focus:ring-1 focus:ring-cream-400">
-              <option value="whatsapp">WhatsApp Business Line (+90 555...)</option>
-              <option value="instagram">Instagram DM (@brandstore.tr)</option>
-              <option value="webhook">Özel API / Webhook Testi</option>
-            </select>
-          </div>
-
-          <!-- Quick Test Buttons -->
-          <div class="space-y-2 pt-2 border-t border-cream-200">
-            <label class="text-xs font-semibold text-cream-700 block">Örnek Müşteri Senaryoları</label>
-            <button class="preset-btn w-full text-left bg-cream-50 hover:bg-cream-200/60 border border-cream-200 text-cream-800 text-xs p-2.5 rounded-xl transition flex items-center justify-between">
-              <span>"Ürünü beğenmedim iade etmek istiyorum"</span>
-              <i class="fa-solid fa-chevron-right text-[10px] text-cream-400"></i>
-            </button>
-            <button class="preset-btn w-full text-left bg-cream-50 hover:bg-cream-200/60 border border-cream-200 text-cream-800 text-xs p-2.5 rounded-xl transition flex items-center justify-between">
-              <span>"Beden oturmadı çok dar geldi"</span>
-              <i class="fa-solid fa-chevron-right text-[10px] text-cream-400"></i>
-            </button>
-            <button class="preset-btn w-full text-left bg-cream-50 hover:bg-cream-200/60 border border-cream-200 text-cream-800 text-xs p-2.5 rounded-xl transition flex items-center justify-between">
-              <span>"Kargo nerede kaldı iptal edeceğim"</span>
-              <i class="fa-solid fa-chevron-right text-[10px] text-cream-400"></i>
-            </button>
-          </div>
-
-          <!-- Metric Pill -->
-          <div class="bg-cream-50 p-3.5 rounded-xl border border-cream-200/80 space-y-2">
-            <div class="flex justify-between text-xs">
-              <span class="text-cream-500 font-medium">Tahmini Yanıt Hızı:</span>
-              <span class="font-bold text-emerald-700">~340 ms</span>
-            </div>
-            <div class="flex justify-between text-xs">
-              <span class="text-cream-500 font-medium">Google Apps Script:</span>
-              <span class="font-bold text-cream-800">doPost Ok</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Live Chat Simulator Screen -->
-        <div class="lg:col-span-8 bg-cream-100 border border-cream-200/80 rounded-2xl shadow-sm flex flex-col h-[520px] overflow-hidden">
-          
-          <!-- Chat Header -->
-          <div class="p-4 bg-cream-100 border-b border-cream-200 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div id="simChannelIcon" class="w-9 h-9 rounded-xl bg-emerald-100 text-accent-waGreen flex items-center justify-center text-lg shadow-sm">
-                <i class="fa-brands fa-whatsapp"></i>
-              </div>
-              <div>
-                <h4 id="simChannelTitle" class="font-bold text-cream-900 text-sm">WhatsApp Live Chat Simulation</h4>
-                <p class="text-[11px] text-cream-500 font-mono">RetainAI Webhook Motoru Aktif</p>
-              </div>
-            </div>
-
-            <button id="clearChatBtn" class="text-xs text-cream-600 hover:text-cream-900 bg-cream-50 border border-cream-200 px-3 py-1.5 rounded-xl transition">
-              <i class="fa-solid fa-trash me-1"></i> Temizle
-            </button>
-          </div>
-
-          <!-- Chat Stream Area -->
-          <div id="chatMessages" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-cream-50/60">
-            <div class="flex gap-3 max-w-[85%]">
-              <div class="w-8 h-8 rounded-full bg-cream-500 text-cream-50 flex items-center justify-center text-xs shrink-0 mt-1 shadow-sm">
-                <i class="fa-solid fa-robot"></i>
-              </div>
-              <div>
-                <div class="bg-cream-100 border border-cream-200 p-3.5 rounded-2xl text-xs sm:text-sm text-cream-900 shadow-sm leading-relaxed">
-                  Merhaba! Ben RetainAI yapay zeka ikna motoruyum. Soldaki hazır mesajlardan birini seçerek veya aşağıya müşteri mesajı yazarak WhatsApp/Instagram entegrasyon yanıtlarını test edebilirsiniz.
-                </div>
-                <span class="text-[10px] text-cream-400 mt-1 block">Sistem Hazır</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Typing Indicator -->
-          <div id="typingIndicator" class="hidden px-6 py-2 flex items-center gap-2 text-xs text-cream-500">
-            <span class="w-2 h-2 bg-cream-500 rounded-full animate-ping"></span>
-            <span class="italic text-cream-600 font-medium">Groq API yanıt üretiyor (Google Sheet B2 kuralları uygulanıyor)...</span>
-          </div>
-
-          <!-- Input Form -->
-          <div class="p-4 bg-cream-100 border-t border-cream-200">
-            <form id="chatForm" class="flex gap-2">
-              <input type="text" id="userInput" class="flex-1 bg-cream-50 border border-cream-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-cream-900 focus:outline-none focus:ring-2 focus:ring-cream-400" placeholder="Müşteri mesajı simüle edin..." required>
-              <button type="submit" class="bg-cream-500 hover:bg-cream-600 text-cream-50 px-5 py-3 rounded-xl font-semibold text-xs sm:text-sm shadow-sm transition">
-                Gönder <i class="fa-solid fa-paper-plane ms-1"></i>
-              </button>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- TAB 4: WEBHOOKS & API KEY -->
-    <section id="tab-webhooks" class="tab-content hidden space-y-6">
-      
-      <div class="bg-cream-100 border border-cream-200/90 rounded-2xl p-6 shadow-sm space-y-6">
-        
+      <!-- WhatsApp Card -->
+      <div class="card">
         <div>
-          <h2 class="text-base sm:text-lg font-bold text-cream-900 flex items-center gap-2">
-            <i class="fa-solid fa-key text-cream-500"></i> Webhook & API Entegrasyon Bilgileri
-          </h2>
-          <p class="text-xs text-cream-600 mt-1">Google Apps Script ve Groq API altyapınızı harici sistemlere bağlayın.</p>
-        </div>
-
-        <!-- Webhook Endpoint Box -->
-        <div class="space-y-2">
-          <label class="text-xs font-bold text-cream-800 uppercase tracking-wider">Mevcut Google Apps Script Webhook Endpoint</label>
-          <div class="flex gap-2">
-            <input type="text" readonly id="webhookUrl" value="https://script.google.com/macros/s/AKfycbx_RetainAI_Sales_Closer_Live/exec" class="flex-1 bg-cream-50 border border-cream-200 rounded-xl px-4 py-3 text-xs text-cream-800 font-mono focus:outline-none">
-            <button onclick="copyToClipboard('webhookUrl')" class="bg-cream-200 hover:bg-cream-300 text-cream-800 font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2">
-              <i class="fa-solid fa-copy"></i>
-              <span class="hidden sm:inline">Kopyala</span>
-            </button>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #E8F5E9; color: #2E7D32;">💬</div>
+            <span class="tag-connected">● Bağlandı</span>
+          </div>
+          <div class="card-title">WhatsApp Business API</div>
+          <div class="card-desc">Müşteri iade mesajlarını WhatsApp sohbet hattınızdan otomatik yanıtlar.</div>
+          <div class="card-details">
+            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Bağlı Numara:</span> <strong>+90 555 019 2834</strong></div>
+            <div style="display:flex; justify-between;"><span>Son Etkileşim:</span> <strong>2 dakika önce</strong></div>
           </div>
         </div>
+        <button class="btn-action">Ayarları Yönet</button>
+      </div>
 
-        <!-- API Key Box -->
-        <div class="space-y-2">
-          <label class="text-xs font-bold text-cream-800 uppercase tracking-wider">RetainAI SaaS API Key</label>
-          <div class="flex gap-2">
-            <input type="text" readonly id="apiKeyInput" value="ret_live_99842031_groq_llama_key" class="flex-1 bg-cream-50 border border-cream-200 rounded-xl px-4 py-3 text-xs text-cream-800 font-mono focus:outline-none">
-            <button onclick="generateNewKey()" class="bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs px-4 py-3 rounded-xl transition flex items-center gap-2">
-              <i class="fa-solid fa-rotate"></i>
-              <span class="hidden sm:inline">Yeni Key Üret</span>
-            </button>
+      <!-- Instagram Card -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #FCE4EC; color: #C2185B;">📷</div>
+            <span class="tag-connected">● Bağlandı</span>
+          </div>
+          <div class="card-title">Instagram Direct Message</div>
+          <div class="card-desc">Instagram sayfanıza gelen iade, beden sorguları ve ürün şikayetlerini karşılar.</div>
+          <div class="card-details">
+            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Sayfa Adı:</span> <strong>@brandstore.tr</strong></div>
+            <div style="display:flex; justify-between;"><span>Webhook Durumu:</span> <strong>Aktif Dinlemede</strong></div>
           </div>
         </div>
+        <button class="btn-action">Meta Hesabını Güncelle</button>
+      </div>
 
-        <!-- cURL Sample -->
-        <div class="space-y-2 pt-2">
-          <label class="text-xs font-bold text-cream-800 uppercase tracking-wider">Örnek cURL İstek Kodu</label>
-          <pre class="bg-cream-900 text-cream-100 p-4 rounded-xl text-xs font-mono overflow-x-auto">curl -X POST "https://script.google.com/macros/s/AKfycbx_RetainAI_Sales_Closer_Live/exec" \
-  -H "Content-Type: application/json" \
-  -d '{"message": "Merhaba ürünü aldım ama beğenmedim iade etmek istiyorum"}'</pre>
+      <!-- Shopify Card -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #F0F4C3; color: #827717;">🛍️</div>
+            <span class="tag-pending">● Kurulum Bekliyor</span>
+          </div>
+          <div class="card-title">Shopify Mağaza Senkronu</div>
+          <div class="card-desc">Sipariş verilerini çekerek beden değişimi ve kupon tanımlamalarını otomatikleştirin.</div>
+          <div class="card-details">
+            Sipariş doğrulama ve stoğu anlık eşleme için Shopify Admin API anahtarınızı bağlayın.
+          </div>
         </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- MODAL: WhatsApp Connection -->
-  <div id="waModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-cream-100 border border-cream-200 rounded-2xl max-w-md w-full p-6 shadow-xl space-y-5">
-      <div class="flex justify-between items-center border-b border-cream-200 pb-3">
-        <h3 class="font-bold text-cream-900 text-base flex items-center gap-2">
-          <i class="fa-brands fa-whatsapp text-accent-waGreen text-xl"></i> WhatsApp QR Kodu Bağla
-        </h3>
-        <button onclick="closeModal('waModal')" class="text-cream-400 hover:text-cream-800"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button class="btn-action-primary">Shopify API Key Ekle</button>
       </div>
 
-      <div class="text-center space-y-3">
-        <div class="w-48 h-48 bg-cream-50 border border-cream-200 rounded-2xl mx-auto flex items-center justify-center p-2 shadow-inner">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=RetainAI_WhatsApp_Sync" alt="QR Code" class="rounded-xl">
+      <!-- Google Sheets Card -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #E0F2F1; color: #00695C;">📊</div>
+            <span class="tag-connected">● Hücre B2 Senkronize</span>
+          </div>
+          <div class="card-title">Google Sheets Prompt Hub</div>
+          <div class="card-desc">Sistem yönergelerini ve ikna kurallarını Google Tablonuzdan anlık okur.</div>
+          <div class="card-details">
+            <div style="display:flex; justify-between; margin-bottom:4px;"><span>Hedef Hücre:</span> <strong>Tablo 1 -> B2</strong></div>
+            <div style="display:flex; justify-between;"><span>Model:</span> <strong>openai/gpt-oss-20b</strong></div>
+          </div>
         </div>
-        <p class="text-xs text-cream-600">
-          WhatsApp Business uygulamanızdan <b>Bağlı Cihazlar > Cihaz Bağla</b> seçeneğine girerek yukarıdaki QR kodu taratın.
-        </p>
+        <button class="btn-action">Prompt Düzenle</button>
       </div>
 
-      <button onclick="closeModal('waModal')" class="w-full bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs py-3 rounded-xl transition">
-        Tamamlandım, Bağlantıyı Onayla
-      </button>
+      <!-- WooCommerce Card -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #E1BEE7; color: #7B1FA2;">🔌</div>
+            <span class="tag-connected">● Bağlandı</span>
+          </div>
+          <div class="card-title">WooCommerce Entegrasyonu</div>
+          <div class="card-desc">WordPress tabanlı e-ticaret sitenizin iade taleplerini yakalar.</div>
+          <div class="card-details">
+            <div style="display:flex; justify-between;"><span>Mağaza URL:</span> <strong>https://mybrand.com</strong></div>
+          </div>
+        </div>
+        <button class="btn-action">Baglantıyı Kontrol Et</button>
+      </div>
+
+      <!-- Custom Webhook Card -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <div class="channel-icon" style="background: #E0E0E0; color: #424242;">⚡</div>
+            <span class="tag-pending">Zapier / Make</span>
+          </div>
+          <div class="card-title">Özel Webhook & Mobil App</div>
+          <div class="card-desc">Kendi özel yazılımınız veya mobil uygulamanız için Webhook endpoint adresi.</div>
+          <div class="card-details">
+            Canlı Webhook URL'nize HTTP POST istekleri göndererek yanıt alın.
+          </div>
+        </div>
+        <button class="btn-action">Webhook URL Kopyala</button>
+      </div>
+
     </div>
   </div>
 
-  <!-- MODAL: Instagram DM Connection -->
-  <div id="igModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-cream-100 border border-cream-200 rounded-2xl max-w-md w-full p-6 shadow-xl space-y-5">
-      <div class="flex justify-between items-center border-b border-cream-200 pb-3">
-        <h3 class="font-bold text-cream-900 text-base flex items-center gap-2">
-          <i class="fa-brands fa-instagram text-accent-igPink text-xl"></i> Meta Instagram Bağlantısı
-        </h3>
-        <button onclick="closeModal('igModal')" class="text-cream-400 hover:text-cream-800"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <div class="space-y-3">
-        <p class="text-xs text-cream-600">Facebook / Meta business hesabınızla giriş yaparak Instagram mesajlaşma izinlerini verin.</p>
-        <button onclick="closeModal('igModal')" class="w-full bg-[#1877F2] hover:bg-blue-700 text-white font-semibold text-xs py-3 rounded-xl transition flex items-center justify-center gap-2">
-          <i class="fa-brands fa-facebook"></i> Facebook ile Giriş Yap & Sayfa Seç
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: Shopify API Key -->
-  <div id="shopifyModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-cream-100 border border-cream-200 rounded-2xl max-w-md w-full p-6 shadow-xl space-y-5">
-      <div class="flex justify-between items-center border-b border-cream-200 pb-3">
-        <h3 class="font-bold text-cream-900 text-base flex items-center gap-2">
-          <i class="fa-brands fa-shopify text-accent-shopifyGreen text-xl"></i> Shopify API Anahtarı
-        </h3>
-        <button onclick="closeModal('shopifyModal')" class="text-cream-400 hover:text-cream-800"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-
-      <div class="space-y-3">
-        <div>
-          <label class="text-xs font-semibold text-cream-700 block mb-1">Shopify Store Domain</label>
-          <input type="text" class="w-full bg-cream-50 border border-cream-200 rounded-xl px-3 py-2 text-xs text-cream-900" placeholder="magazaniz.myshopify.com">
+  <!-- Modal Pop-up -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="toggleModal()">✕</button>
+      <div class="modal-title">RetainAI'ya Hoş Geldiniz</div>
+      <div class="modal-sub">E-ticaret mağazanızı bağlayın ve ikna yapay zekasını kullanmaya başlayın.</div>
+      
+      <form onsubmit="event.preventDefault(); alert('Giriş başarılı!'); toggleModal();">
+        <div class="form-group">
+          <label>E-Posta Adresiniz</label>
+          <input type="email" placeholder="ornek@magaza.com" required>
         </div>
-        <div>
-          <label class="text-xs font-semibold text-cream-700 block mb-1">Admin API Access Token</label>
-          <input type="password" class="w-full bg-cream-50 border border-cream-200 rounded-xl px-3 py-2 text-xs text-cream-900" placeholder="shpat_xxxxxxxxxxxx">
+        <div class="form-group">
+          <label>Şifre</label>
+          <input type="password" placeholder="••••••••" required>
         </div>
-      </div>
-
-      <button onclick="closeModal('shopifyModal')" class="w-full bg-cream-500 hover:bg-cream-600 text-cream-50 font-semibold text-xs py-3 rounded-xl transition">
-        Shopify Bağlantısını Kaydet
-      </button>
+        <button type="submit" class="btn-action-primary" style="margin-top:10px;">Giriş Yap / Ücretsiz Kaydol</button>
+      </form>
     </div>
   </div>
 
   <script>
-    // Tab Switching Logic
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.nav-tab').forEach(el => {
-        el.classList.remove('tab-active');
-        el.classList.add('text-cream-600');
-      });
-
-      const activeContent = document.getElementById(`tab-${tabId}`);
-      if (activeContent) activeContent.classList.remove('hidden');
-
-      const activeNav = document.querySelector(`[data-tab="${tabId}"]`);
-      if (activeNav) {
-        activeNav.classList.add('tab-active');
-        activeNav.classList.remove('text-cream-600');
-      }
+    function toggleModal() {
+      const modal = document.getElementById('authModal');
+      modal.classList.toggle('active');
     }
-
-    document.querySelectorAll('.nav-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.getAttribute('data-tab');
-        switchTab(tab);
-      });
-    });
-
-    // Modals Handling
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-
-    // Quick Copy Helper
-    function copyToClipboard(inputId) {
-      const input = document.getElementById(inputId);
-      input.select();
-      document.execCommand('copy');
-      alert('Kopyalandı: ' + input.value);
-    }
-
-    function generateNewKey() {
-      const randomStr = Math.random().toString(36).substring(2, 12);
-      document.getElementById('apiKeyInput').value = `ret_live_${randomStr}_groq_key`;
-      alert('Yeni API Key üretildi ve kaydedildi!');
-    }
-
-    // Chat Simulator Logic
-    const chatMessages = document.getElementById('chatMessages');
-    const chatForm = document.getElementById('chatForm');
-    const userInput = document.getElementById('userInput');
-    const typingIndicator = document.getElementById('typingIndicator');
-
-    function appendMessage(sender, text) {
-      const wrapper = document.createElement('div');
-      
-      if (sender === 'user') {
-        wrapper.className = 'flex gap-3 max-w-[85%] ml-auto flex-row-reverse';
-        wrapper.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-cream-300 text-cream-900 font-bold flex items-center justify-center text-xs shrink-0 mt-1 shadow-sm">
-            M
-          </div>
-          <div>
-            <div class="bg-cream-200 border border-cream-300 p-3.5 rounded-2xl text-xs sm:text-sm text-cream-900 shadow-sm leading-relaxed">
-              ${escapeHtml(text)}
-            </div>
-            <span class="text-[10px] text-cream-400 mt-1 block text-right">Müşteri</span>
-          </div>
-        `;
-      } else {
-        wrapper.className = 'flex gap-3 max-w-[85%]';
-        wrapper.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-cream-500 text-cream-50 flex items-center justify-center text-xs shrink-0 mt-1 shadow-sm">
-            <i class="fa-solid fa-robot"></i>
-          </div>
-          <div>
-            <div class="bg-cream-100 border border-cream-200 p-3.5 rounded-2xl text-xs sm:text-sm text-cream-900 shadow-sm leading-relaxed">
-              ${escapeHtml(text)}
-            </div>
-            <span class="text-[10px] text-cream-400 mt-1 block">RetainAI (Groq API)</span>
-          </div>
-        `;
-      }
-
-      chatMessages.appendChild(wrapper);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-
-    chatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const text = userInput.value.trim();
-      if (!text) return;
-
-      appendMessage('user', text);
-      userInput.value = '';
-
-      typingIndicator.classList.remove('hidden');
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-
-      setTimeout(() => {
-        typingIndicator.classList.add('hidden');
-        let reply = "Merhaba! Yaşadığınız olumsuzluk için üzgünüz. Ürünümüzle ilgili tam olarak beklentinizi karşılamayan nokta ne oldu? Sorununuzu hızla çözebilmemiz için detay verebilir misiniz?";
-        
-        if (text.toLowerCase().includes("beden")) {
-          reply = "Beden konusunda uyumsuzluk yaşadığınız için çok üzgünüz. Kargo ücreti ödemeden ücretsiz beden değişimi gerçekleştirebiliriz. İlgili boyutu adresinize gönderelim mi?";
-        }
-        appendMessage('ai', reply);
-      }, 800);
-    });
-
-    // Presets Click
-    document.querySelectorAll('.preset-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const query = btn.querySelector('span').textContent.replace(/"/g, '');
-        userInput.value = query;
-        chatForm.dispatchEvent(new Event('submit'));
-      });
-    });
-
-    document.getElementById('clearChatBtn').addEventListener('click', () => {
-      chatMessages.innerHTML = '';
-      appendMessage('ai', 'Sohbet geçmişi temizlendi.');
-    });
-
-    document.getElementById('quickApiBtn').addEventListener('click', () => switchTab('webhooks'));
-    document.getElementById('savePromptBtn').addEventListener('click', () => {
-      alert('Google Sheet B2 Hücresi ve Groq API ikna kuralları başarıyla güncellendi!');
-    });
   </script>
+
 </body>
 </html>
