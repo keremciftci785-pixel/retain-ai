@@ -17,8 +17,6 @@
       --accent-brown-hover: #4A3528;
       --status-green-bg: #E3F4EB;
       --status-green-text: #1B7A4B;
-      --status-orange-bg: #FDF0D5;
-      --status-orange-text: #B26B00;
     }
 
     * {
@@ -192,22 +190,6 @@
       max-width: 600px;
     }
 
-    .banner-stat {
-      text-align: right;
-    }
-
-    .stat-val {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    /* Grid */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -222,12 +204,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
 
     .card-header {
@@ -256,15 +232,6 @@
       border-radius: 12px;
     }
 
-    .tag-pending {
-      background: var(--status-orange-bg);
-      color: var(--status-orange-text);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 12px;
-    }
-
     .card-title {
       font-size: 16px;
       font-weight: 700;
@@ -287,26 +254,6 @@
       margin-bottom: 16px;
     }
 
-    .btn-action {
-      width: 100%;
-      background: #FFF;
-      border: 1px solid #D5C8B8;
-      color: var(--text-primary);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-
-    .btn-action:hover {
-      background: var(--accent-brown);
-      color: #FFF;
-      border-color: var(--accent-brown);
-    }
-
     .btn-action-primary {
       width: 100%;
       background: var(--accent-brown);
@@ -324,7 +271,7 @@
       background: var(--accent-brown-hover);
     }
 
-    /* Canlı Chat Simülatörü Grid Yapısı */
+    /* Canlı Chat Simülatörü */
     .chat-layout {
       display: grid;
       grid-template-columns: 320px 1fr;
@@ -349,7 +296,6 @@
       color: var(--text-secondary);
       cursor: pointer;
       margin-bottom: 8px;
-      transition: all 0.2s;
     }
 
     .scenario-btn:hover {
@@ -413,33 +359,39 @@
       background: #FFF;
     }
 
-    /* Tekil & Sabit Fiyatlandırma Sayfası ($1,000) */
+    /* TEKİL VE NET $1,000 / 49.130 TL FİYATLANDIRMA KARTI */
     .pricing-hero {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 40px;
       text-align: center;
-      max-width: 700px;
+      max-width: 650px;
       margin: 0 auto;
     }
 
-    .price-tag {
+    .price-main {
       font-size: 48px;
       font-weight: 700;
       color: var(--accent-brown);
-      margin: 20px 0;
+      margin-top: 15px;
+    }
+
+    .price-sub {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
     }
 
     .feature-list {
       text-align: left;
       margin: 24px auto;
-      max-width: 400px;
+      max-width: 420px;
       font-size: 14px;
       color: var(--text-secondary);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .feature-list li {
@@ -541,9 +493,8 @@
     <!-- Navigation Tabs -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab(0)">🔌 Kanal Entegrasyonları</button>
-      <button class="tab-btn" onclick="switchTab(1)">🧠 İkna Motoru & Sheet B2</button>
-      <button class="tab-btn" onclick="switchTab(2)">💬 Canlı Kanal Testi</button>
-      <button class="tab-btn" onclick="switchTab(3)">💳 Fiyatlandırma ($1,000)</button>
+      <button class="tab-btn" onclick="switchTab(1)">💬 Canlı Test Simülatörü</button>
+      <button class="tab-btn" onclick="switchTab(2)">💳 Fiyatlandırma</button>
     </div>
 
     <!-- TAB 0: Kanal Entegrasyonları -->
@@ -551,11 +502,7 @@
       <div class="banner">
         <div>
           <div class="banner-title">Müşteri İletişim Kanallarınızı Bağlayın</div>
-          <div class="banner-desc">WhatsApp Business, Instagram DM veya e-ticaret altyapınızı bağlayın. Yapay zeka iade taleplerini otomatik karşılayıp satışa dönüştürsün.</div>
-        </div>
-        <div class="banner-stat">
-          <div class="stat-label">Aktif Bağlı Kanallar</div>
-          <div class="stat-val">3 / 5 Kanal</div>
+          <div class="banner-desc">WhatsApp Business ve Instagram DM entegrasyonu ile iade taleplerini otomatik olarak satışa dönüştürün.</div>
         </div>
       </div>
 
@@ -570,7 +517,7 @@
             <div class="card-desc">Müşteri iade mesajlarını otomatik yanıtlar.</div>
             <div class="card-details">Bağlı Numara: +90 555 019 2834</div>
           </div>
-          <button class="btn-action">Ayarları Yönet</button>
+          <button class="btn-action-primary">Ayarları Yönet</button>
         </div>
 
         <div class="card">
@@ -583,40 +530,13 @@
             <div class="card-desc">Beden sorguları ve ürün şikayetlerini karşılar.</div>
             <div class="card-details">Sayfa: @brandstore.tr</div>
           </div>
-          <button class="btn-action">Meta Hesabını Güncelle</button>
-        </div>
-
-        <div class="card">
-          <div>
-            <div class="card-header">
-              <div class="channel-icon" style="background: #F0F4C3; color: #827717;">🛍️</div>
-              <span class="tag-pending">● Kurulum Bekliyor</span>
-            </div>
-            <div class="card-title">Shopify Mağaza Senkronu</div>
-            <div class="card-desc">Sipariş verilerini çekerek kupon tanımlamalarını otomatikleştirin.</div>
-            <div class="card-details">Admin API anahtarınızı bağlayın.</div>
-          </div>
-          <button class="btn-action-primary">Shopify API Key Ekle</button>
+          <button class="btn-action-primary">Meta Hesabını Güncelle</button>
         </div>
       </div>
     </div>
 
-    <!-- TAB 1: İkna Motoru & Sheet B2 -->
+    <!-- TAB 1: Canlı Test Simülatörü -->
     <div class="section-content" id="tab-1">
-      <div class="banner">
-        <div>
-          <div class="banner-title">Google Sheets B2 Sistem Yönergeleri</div>
-          <div class="banner-desc">Yapay zekanın müşterilerle nasıl konuşacağını, hangi indirimleri önereceğini doğrudan Google Tablonuzdan yönetin.</div>
-        </div>
-      </div>
-      <div class="card" style="max-width: 700px;">
-        <div class="card-title">Aktif Prompt Konfigürasyonu</div>
-        <div class="card-desc">"Sen profesyonel bir e-ticaret iade önleme asistanısın. Müşteri iade etmek istediğinde asla zorluk çıkarma; önce özür dile, ardından %15 indirim kuponu veya ücretsiz değişim önererek satışı tutundurmaya çalış."</div>
-      </div>
-    </div>
-
-    <!-- TAB 2: Canlı Kanal Testi -->
-    <div class="section-content" id="tab-2">
       <div class="chat-layout">
         <div class="chat-sidebar">
           <div style="font-weight:700; font-size:14px; margin-bottom:12px;">Örnek Senaryolar</div>
@@ -637,24 +557,25 @@
       </div>
     </div>
 
-    <!-- TAB 3: Fiyatlandırma ($1,000 / Sabit Ürün) -->
-    <div class="section-content" id="tab-3">
+    <!-- TAB 2: Tekil & Net $1,000 Fiyatlandırma ($1 = 49.13 TL) -->
+    <div class="section-content" id="tab-2">
       <div class="pricing-hero">
-        <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">KURUMSAL LİSANS - SINIRSIZ KULLANIM</span>
+        <span class="badge" style="background:var(--status-green-bg); color:var(--status-green-text);">KURUMSAL LİSANS - TEK PAKET</span>
         <h2 style="margin-top:12px; font-size:24px;">RetainAI Enterprise</h2>
-        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Tüm kanallar, Groq API entegrasyonu ve sınırsız iade önleme motoru tek pakette.</p>
+        <p style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Tüm özellikler, sınırsız mesajlaşma ve yapay zeka motoru tek planda.</p>
         
-        <div class="price-tag">$1,000 <span style="font-size:16px; font-weight:400; color:var(--text-secondary);">/ ay</span></div>
+        <div class="price-main">$1,000 <span style="font-size:20px; font-weight:500; color:var(--text-secondary);">/ ay</span></div>
+        <div class="price-sub">49.130 TL / ay (Kur: $1 = 49,13 TL)</div>
 
         <ul class="feature-list">
-          <li>Sınırsız WhatsApp & Instagram Mesaj Yanıtlama</li>
+          <li>Sınırsız WhatsApp & Instagram Entegrasyonu</li>
           <li>Google Sheets B2 Canlı Prompt Yönetimi</li>
-          <li>Groq API (gpt-oss-20b) En Hızlı Yanıt Motoru</li>
+          <li>Groq API En Hızlı Yanıt Motoru</li>
           <li>Shopify & WooCommerce Tam Senkronizasyon</li>
           <li>Öncelikli 7/24 Teknik Destek</li>
         </ul>
 
-        <button class="btn-action-primary" style="margin-top:16px; padding: 14px;" onclick="toggleModal()">Hemen Abone Ol</button>
+        <button class="btn-action-primary" style="margin-top:16px; padding: 14px; font-size:15px;" onclick="toggleModal()">Hemen Abone Ol</button>
       </div>
     </div>
 
@@ -665,7 +586,7 @@
     <div class="modal-box">
       <button class="modal-close" onclick="toggleModal()">✕</button>
       <div style="font-size:20px; font-weight:700; text-align:center; margin-bottom:6px;">RetainAI'ya Katılın</div>
-      <div style="font-size:13px; color:var(--text-secondary); text-align:center; margin-bottom:16px;">Enterprise Lisans: $1,000 / ay</div>
+      <div style="font-size:13px; color:var(--text-secondary); text-align:center; margin-bottom:16px;">Enterprise Lisans: $1,000 (49.130 TL) / ay</div>
       <form onsubmit="event.preventDefault(); alert('Kayıt / Ödeme sayfasına yönlendiriliyorsunuz!'); toggleModal();">
         <div class="form-group">
           <label>E-Posta Adresi</label>
@@ -684,15 +605,6 @@
     function toggleModal() {
       document.getElementById('authModal').classList.toggle('active');
     }
-
-    (function switchTab(index) {
-      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-      });
-      document.querySelectorAll('.section-content').forEach((sec, i) => {
-        sec.classList.toggle('active', i === index);
-      });
-    })(0);
 
     function switchTab(index) {
       document.querySelectorAll('.tab-btn').forEach((btn, i) => {
